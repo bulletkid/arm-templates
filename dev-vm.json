@@ -111,7 +111,7 @@
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
-            "name": "manudevdiag942",
+            "name": "manudevdiag952",
             "location": "eastus",
             "sku": {
                 "name": "Standard_LRS",
@@ -248,9 +248,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices",
             "apiVersion": "2019-06-01",
-            "name": "manudevdiag942/default",
+            "name": "manudevdiag952/default",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', 'manudevdiag942')]"
+                "[resourceId('Microsoft.Storage/storageAccounts', 'manudevdiag952')]"
             ],
             "sku": {
                 "name": "Standard_LRS"
@@ -267,9 +267,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/fileServices",
             "apiVersion": "2019-06-01",
-            "name": "manudevdiag942/default",
+            "name": "manudevdiag952/default",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', 'manudevdiag942')]"
+                "[resourceId('Microsoft.Storage/storageAccounts', 'manudevdiag952')]"
             ],
             "sku": {
                 "name": "Standard_LRS"
@@ -287,7 +287,7 @@
             "location": "eastus",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkInterfaces', 'manu-dev450')]",
-                "[resourceId('Microsoft.Storage/StorageAccounts', 'manudevdiag942')]"
+                "[resourceId('Microsoft.Storage/StorageAccounts', 'manudevdiag952')]"
             ],
             "properties": {
                 "hardwareProfile": {
@@ -331,7 +331,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "https://manudevdiag942.blob.core.windows.net/"
+                        "storageUri": "https://manudevdiag952.blob.core.windows.net/"
                     }
                 }
             }
@@ -339,10 +339,10 @@
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
             "apiVersion": "2019-06-01",
-            "name": "manudevdiag942/default/bootdiagnostics-manudev-d24462ba-cd6e-4fa5-b2d6-0177d45a5390",
+            "name": "manudevdiag952/default/bootdiagnostics-manudev-d24462ba-cd6e-4fa5-b2d6-0177d45a5390",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'manudevdiag942', 'default')]",
-                "[resourceId('Microsoft.Storage/storageAccounts', 'manudevdiag942')]"
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', 'manudevdiag952', 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', 'manudevdiag952')]"
             ],
             "properties": {
                 "publicAccess": "None"
