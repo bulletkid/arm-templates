@@ -7,7 +7,7 @@
         {
             "type": "Microsoft.KeyVault/vaults",
             "apiVersion": "2016-10-01",
-            "name": "manu-dev-kv2",
+            "name": "manu-dev-kvx",
             "location": "eastasia",
             "properties": {
                 "sku": {
@@ -69,10 +69,10 @@
         {
             "type": "Microsoft.KeyVault/vaults/secrets",
             "apiVersion": "2016-10-01",
-            "name": "manu-dev-kv2/secret",
+            "name": "manu-dev-kvx/secret",
             "location": "eastasia",
             "dependsOn": [
-                "[resourceId('Microsoft.KeyVault/vaults', 'manu-dev-kv2')]"
+                "[resourceId('Microsoft.KeyVault/vaults', 'manu-dev-kvx')]"
             ],
             "properties": {
                 "attributes": {
