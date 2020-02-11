@@ -69,10 +69,10 @@
         {
             "type": "Microsoft.KeyVault/vaults/secrets",
             "apiVersion": "2016-10-01",
-            "name": "manu-dev-kv/secret",
+            "name": "manu-dev-kv2/secret",
             "location": "eastasia",
             "dependsOn": [
-                "[resourceId('Microsoft.KeyVault/vaults', 'manu-dev-kv')]"
+                "[resourceId('Microsoft.KeyVault/vaults', 'manu-dev-kv2')]"
             ],
             "properties": {
                 "attributes": {
