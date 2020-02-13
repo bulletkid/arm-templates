@@ -1,0 +1,113 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "extensions_enablevmaccess_username": {
+            "type": "SecureString"
+        },
+        "extensions_enablevmaccess_password": {
+            "type": "SecureString"
+        },
+        "extensions_enablevmaccess_ssh_key": {
+            "type": "SecureString"
+        },
+        "extensions_enablevmaccess_reset_ssh": {
+            "type": "SecureString"
+        },
+        "extensions_enablevmaccess_remove_user": {
+            "type": "SecureString"
+        },
+        "extensions_enablevmaccess_expiration": {
+            "type": "SecureString"
+        },
+        "virtualMachines_manu_dev_name": {
+            "defaultValue": "manu-dev",
+            "type": "String"
+        },
+        "disks_manu_dev_OsDisk_1_516de7def63246f0991ad4234603fc75_externalid": {
+            "defaultValue": "/subscriptions/f27911ab-3899-4535-8c2b-b5100ca66fb6/resourceGroups/MANU-DEV/providers/Microsoft.Compute/disks/manu-dev_OsDisk_1_516de7def63246f0991ad4234603fc75",
+            "type": "String"
+        },
+        "networkInterfaces_manu_dev450_externalid": {
+            "defaultValue": "/subscriptions/f27911ab-3899-4535-8c2b-b5100ca66fb6/resourceGroups/manu-dev/providers/Microsoft.Network/networkInterfaces/manu-dev450",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2019-07-01",
+            "name": "[parameters('virtualMachines_manu_dev_name')]",
+            "location": "eastus",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_D2s_v3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "17.10",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_manu_dev_name'), '_OsDisk_1_516de7def63246f0991ad4234603fc75')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "id": "[parameters('disks_manu_dev_OsDisk_1_516de7def63246f0991ad4234603fc75_externalid')]"
+                        }
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_manu_dev_name')]",
+                    "adminUsername": "manu",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_manu_dev450_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://manudevdiag942.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2019-07-01",
+            "name": "[concat(parameters('virtualMachines_manu_dev_name'), '/enablevmaccess')]",
+            "location": "eastus",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_manu_dev_name'))]"
+            ],
+            "properties": {
+                "autoUpgradeMinorVersion": true,
+                "publisher": "Microsoft.OSTCExtensions",
+                "type": "VMAccessForLinux",
+                "typeHandlerVersion": "1.4",
+                "settings": {},
+                "protectedSettings": {
+                    "username": "[parameters('extensions_enablevmaccess_username')]",
+                    "password": "[parameters('extensions_enablevmaccess_password')]",
+                    "ssh_key": "[parameters('extensions_enablevmaccess_ssh_key')]",
+                    "reset_ssh": "[parameters('extensions_enablevmaccess_reset_ssh')]",
+                    "remove_user": "[parameters('extensions_enablevmaccess_remove_user')]",
+                    "expiration": "[parameters('extensions_enablevmaccess_expiration')]"
+                }
+            }
+        }
+    ]
+}
