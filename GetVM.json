@@ -1,0 +1,69 @@
+{
+  "name": "manu-dev",
+  "id": "/subscriptions/f27911ab-3899-4535-8c2b-b5100ca66fb6/resourceGroups/manu-dev/providers/Microsoft.Compute/virtualMachines/manu-dev",
+  "type": "Microsoft.Compute/virtualMachines",
+  "location": "eastus",
+  "properties": {
+    "vmId": "d24462ba-cd6e-4fa5-b2d6-0177d45a5390",
+    "hardwareProfile": {
+      "vmSize": "Standard_D2s_v3"
+    },
+    "storageProfile": {
+      "imageReference": {
+        "publisher": "Canonical",
+        "offer": "UbuntuServer",
+        "sku": "17.10",
+        "version": "latest",
+        "exactVersion": "17.10.201805220"
+      },
+      "osDisk": {
+        "osType": "Linux",
+        "name": "manu-dev_OsDisk_1_516de7def63246f0991ad4234603fc75",
+        "createOption": "FromImage",
+        "caching": "ReadWrite",
+        "managedDisk": {
+          "id": "/subscriptions/f27911ab-3899-4535-8c2b-b5100ca66fb6/resourceGroups/MANU-DEV/providers/Microsoft.Compute/disks/manu-dev_OsDisk_1_516de7def63246f0991ad4234603fc75"
+        }
+      },
+      "dataDisks": []
+    },
+    "osProfile": {
+      "computerName": "manu-dev",
+      "adminUsername": "manu",
+      "linuxConfiguration": {
+        "disablePasswordAuthentication": false
+      },
+      "secrets": []
+    },
+    "networkProfile": {
+      "networkInterfaces": [
+        {
+          "id": "/subscriptions/f27911ab-3899-4535-8c2b-b5100ca66fb6/resourceGroups/manu-dev/providers/Microsoft.Network/networkInterfaces/manu-dev450"
+        }
+      ]
+    },
+    "diagnosticsProfile": {
+      "bootDiagnostics": {
+        "enabled": true,
+        "storageUri": "https://manudevdiag942.blob.core.windows.net/"
+      }
+    },
+    "provisioningState": "Succeeded"
+  },
+  "resources": [
+    {
+      "name": "enablevmaccess",
+      "id": "/subscriptions/f27911ab-3899-4535-8c2b-b5100ca66fb6/resourceGroups/manu-dev/providers/Microsoft.Compute/virtualMachines/manu-dev/extensions/enablevmaccess",
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "location": "eastus",
+      "properties": {
+        "autoUpgradeMinorVersion": true,
+        "provisioningState": "Succeeded",
+        "publisher": "Microsoft.OSTCExtensions",
+        "type": "VMAccessForLinux",
+        "typeHandlerVersion": "1.4",
+        "settings": {}
+      }
+    }
+  ]
+}
